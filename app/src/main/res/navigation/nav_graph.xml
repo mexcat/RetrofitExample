@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/listaTerrenoFragment">
+
+    <fragment
+        android:id="@+id/listaTerrenoFragment"
+        android:name="cl.gencina.retrofitexample.view.ListaTerrenoFragment"
+        android:label="fragment_lista_terreno"
+        tools:layout="@layout/fragment_lista_terreno" />
+</navigation>
