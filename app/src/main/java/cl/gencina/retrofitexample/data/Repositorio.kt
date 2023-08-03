@@ -16,9 +16,6 @@ class Repositorio(private val terrenoAPI: TerrenoAPI) {
             }
         }
         return emptyList()
-
-
-
     }
 
 }

@@ -5,9 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.trace
 import androidx.fragment.app.activityViewModels
-import cl.gencina.retrofitexample.data.remote.Terreno
 import cl.gencina.retrofitexample.databinding.FragmentListaTerrenoBinding
 
 
@@ -22,7 +20,7 @@ class ListaTerrenoFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentListaTerrenoBinding.inflate(layoutInflater, container, false)
         initAdapter()
         binding.btnObtenerLista.setOnClickListener {
