@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cl.gencina.retrofitexample.data.remote.Terreno
 import cl.gencina.retrofitexample.databinding.TerrenosItemBinding
 import coil.load
+import coil.transform.CircleCropTransformation
 
 class AdapterListaTerreno : RecyclerView.Adapter<AdapterListaTerreno.ListaTerrenoViewHolder>() {
 
@@ -35,7 +36,9 @@ class AdapterListaTerreno : RecyclerView.Adapter<AdapterListaTerreno.ListaTerren
 
     class ListaTerrenoViewHolder(private val v: TerrenosItemBinding):RecyclerView.ViewHolder(v.root) {
         fun bind(terreno: Terreno) {
-            v.ivTerreno.load(terreno.img)
+            v.ivTerreno.load(terreno.img){
+                transformations(CircleCropTransformation())
+            }
         }
     }
 }
