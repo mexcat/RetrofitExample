@@ -1,9 +1,12 @@
 package cl.gencina.retrofitexample.view
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import cl.gencina.retrofitexample.data.remote.Terreno
+import cl.gencina.retrofitexample.R
+import cl.gencina.retrofitexample.data.local.TerrenoEntity
 import cl.gencina.retrofitexample.databinding.TerrenosItemBinding
 import coil.load
 import coil.transform.CircleCropTransformation
@@ -11,7 +14,7 @@ import coil.transform.CircleCropTransformation
 class AdapterListaTerreno : RecyclerView.Adapter<AdapterListaTerreno.ListaTerrenoViewHolder>() {
 
     lateinit var binding : TerrenosItemBinding
-    private val listaTerrenos = mutableListOf<Terreno>()
+    private val listaTerrenos = mutableListOf<TerrenoEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListaTerrenoViewHolder {
         binding = TerrenosItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -27,7 +30,7 @@ class AdapterListaTerreno : RecyclerView.Adapter<AdapterListaTerreno.ListaTerren
         return listaTerrenos.size
     }
 
-    fun setData(listaTerrenos: List<Terreno>){
+    fun setData(listaTerrenos: List<TerrenoEntity>){
         this.listaTerrenos.clear()
         this.listaTerrenos.addAll(listaTerrenos)
         notifyDataSetChanged()
@@ -35,9 +38,14 @@ class AdapterListaTerreno : RecyclerView.Adapter<AdapterListaTerreno.ListaTerren
     }
 
     class ListaTerrenoViewHolder(private val v: TerrenosItemBinding):RecyclerView.ViewHolder(v.root) {
-        fun bind(terreno: Terreno) {
+        fun bind(terreno: TerrenoEntity) {
             v.ivTerreno.load(terreno.img){
                 transformations(CircleCropTransformation())
+            }
+            v.cvTerreno.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putString("idTerreno", terreno.id)
+                Navigation.findNavController(v.root).navigate(R.id.action_listaTerrenoFragment_to_detalleFragment, bundle)
             }
         }
     }

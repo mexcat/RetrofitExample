@@ -9,5 +9,18 @@
         android:id="@+id/listaTerrenoFragment"
         android:name="cl.gencina.retrofitexample.view.ListaTerrenoFragment"
         android:label="fragment_lista_terreno"
-        tools:layout="@layout/fragment_lista_terreno" />
+        tools:layout="@layout/fragment_lista_terreno" >
+        <action
+            android:id="@+id/action_listaTerrenoFragment_to_detalleFragment"
+            app:destination="@id/detalleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalleFragment"
+        android:name="cl.gencina.retrofitexample.view.DetalleFragment"
+        android:label="fragment_detalle"
+        tools:layout="@layout/fragment_detalle" >
+        <action
+            android:id="@+id/action_detalleFragment_to_listaTerrenoFragment"
+            app:destination="@id/listaTerrenoFragment" />
+    </fragment>
 </navigation>

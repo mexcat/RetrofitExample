@@ -12,9 +12,13 @@ import cl.gencina.retrofitexample.databinding.FragmentListaTerrenoBinding
 class ListaTerrenoFragment : Fragment() {
     lateinit var binding : FragmentListaTerrenoBinding
     val viewmodel : TerrenoViewModel by activityViewModels()
+    private var param1: Boolean? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        arguments?.let {
+            param1 = it.getBoolean("volver")
+        }
     }
 
     override fun onCreateView(
@@ -22,17 +26,25 @@ class ListaTerrenoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentListaTerrenoBinding.inflate(layoutInflater, container, false)
-        initAdapter()
+
+        if(param1 == true){
+            start()
+        }
+
         binding.btnObtenerLista.setOnClickListener {
-            viewmodel.getTerrenos()
+            start()
         }
         return binding.root
     }
 
+    private fun start(){
+        initAdapter()
+        viewmodel.getTerrenos()
+    }
     private fun initAdapter(){
         val adapter = AdapterListaTerreno()
         binding.rvListaTerrenos.adapter = adapter
-        viewmodel.terrenosLiveData.observe(viewLifecycleOwner){
+        viewmodel.terrenosLiveData().observe(viewLifecycleOwner){
             adapter.setData(it)
         }
     }
